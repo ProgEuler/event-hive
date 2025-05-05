@@ -1,62 +1,74 @@
 [
     {
       "id": 1,
-      "thumbnail": "/images/techfest.jpg",
+      "thumbnail": "https://techindustryalliance.ie/wp-content/uploads/2025/03/TechFest-2025-Sponsors-1920x1080-v2.png",
       "name": "TechFest 2025",
       "category": "Tech",
       "date": "2025-06-15",
       "location": "Dhaka Convention Center",
       "entryFee": "Free",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "Tech Industry Alliance",
+      "description": "A premier technology festival showcasing innovations, startups, and future trends in software, AI, and robotics."
     },
     {
       "id": 2,
-      "thumbnail": "/images/art_expo.jpg",
+      "thumbnail": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F968378323%2F220105756082%2F1%2Foriginal.20250224-221631?crop=focalpoint&fit=crop&w=600&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.5&fp-y=0.5&s=14c965251ae214dd0b66fdc185cb595c",
       "name": "Modern Art Expo",
       "category": "Art",
       "date": "2025-07-02",
       "location": "Chittagong Art Gallery",
       "entryFee": "৳200",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "Bangladesh Artists Forum",
+      "description": "An exhibition of contemporary art, featuring paintings, installations, and multimedia from renowned and emerging artists."
     },
     {
       "id": 3,
-      "thumbnail": "/images/music_night.jpg",
+      "thumbnail": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/music-concert-tabloid-template-design-5377f80872b327e6c6b27d95ae17f3d1_screen.jpg?ts=1637003154",
       "name": "Live Music Night",
       "category": "Music",
       "date": "2025-06-20",
       "location": "Sylhet Arena",
       "entryFee": "৳500",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "BeatFusion Entertainment",
+      "description": "A high-energy evening featuring live performances by popular rock, indie, and folk bands from around the country."
     },
     {
       "id": 4,
-      "thumbnail": "/images/startup_meet.jpg",
+      "thumbnail": "https://i.ytimg.com/vi/CUN5AVD2zSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAN-QSWeTlX96Oo6HfoJclfpoqXWQ",
       "name": "Startup Networking Meetup",
       "category": "Business",
       "date": "2025-06-10",
       "location": "Innovation Hub, Rajshahi",
       "entryFee": "Free (Registration Required)",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "Startup Bangladesh",
+      "description": "An exclusive networking event for startup founders, investors, and tech enthusiasts to collaborate and grow ideas."
     },
     {
       "id": 5,
-      "thumbnail": "/images/workshop_ai.jpg",
+      "thumbnail": "https://i.ytimg.com/vi/GBIkeMemh2E/maxresdefault.jpg",
       "name": "AI & ML Workshop",
       "category": "Education",
       "date": "2025-06-25",
       "location": "BRAC University, Dhaka",
       "entryFee": "৳300",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "AI Club Bangladesh",
+      "description": "Hands-on sessions on machine learning, deep learning, and data science for students and professionals."
     },
     {
       "id": 6,
-      "thumbnail": "/images/food_fest.jpg",
+      "thumbnail": "https://gokid.ro/wp-content/uploads/2024/05/439866556_439919461957560_1527658440513888845_n-e1714809976277.jpg",
       "name": "Street Food Carnival",
       "category": "Food",
       "date": "2025-06-18",
       "location": "Gulshan Park, Dhaka",
       "entryFee": "৳100",
-      "buttonText": "View More"
+      "buttonText": "View More",
+      "organizer": "Dhaka Foodies Community",
+      "description": "A fun-filled day of tasting delicious street food, live cooking shows, and food competitions from around the city."
     }
   ]

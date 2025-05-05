@@ -41,7 +41,7 @@ export default function Contact() {
       {/* Header Banner */}
       <div className="bg-opacity-80 backdrop-blur-sm py-12">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 ">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mt-8 mb-2 ">Contact Us</h1>
           <p className="text-lg text-purple-200">Get in touch with the Event Hive team</p>
         </div>
       </div>

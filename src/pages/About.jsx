@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, Award, Music, Heart, Star } from 'lucide-react';
+import { Calendar, Users, Award, Music } from 'lucide-react';
 
 export default function About() {
   const stats = [
@@ -7,33 +7,6 @@ export default function About() {
     { icon: <Users className="w-6 h-6" />, value: "50,000+", label: "Happy Attendees" },
     { icon: <Award className="w-6 h-6" />, value: "15+", label: "Years Experience" },
     { icon: <Music className="w-6 h-6" />, value: "300+", label: "Artists Featured" },
-  ];
-
-  const team = [
-    {
-      name: "Alex Johnson",
-      role: "Founder & Creative Director",
-      image: "/api/placeholder/400/400",
-      bio: "With over 15 years in event management, Alex has revolutionized the nightlife scene with innovative concepts and immersive experiences."
-    },
-    {
-      name: "Samantha Lee",
-      role: "Head of Operations",
-      image: "/api/placeholder/400/400",
-      bio: "Samantha ensures that every event runs flawlessly, from initial planning to the final encore."
-    },
-    {
-      name: "Marcus Rivera",
-      role: "Music Curator",
-      image: "/api/placeholder/400/400",
-      bio: "Former DJ turned talent scout, Marcus has an ear for discovering the next big acts before they break."
-    },
-    {
-      name: "Zoe Chen",
-      role: "Marketing Director",
-      image: "/api/placeholder/400/400",
-      bio: "Zoe's innovative marketing strategies have built Event Hive into a recognized brand across the global nightlife industry."
-    }
   ];
 
   const testimonials = [

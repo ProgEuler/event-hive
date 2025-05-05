@@ -53,7 +53,7 @@ export default function UpcomingEvents({ data }) {
     }
   ];
 
-  const totalSlides = events.length;
+  const totalSlides = data.length;
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -65,9 +65,9 @@ export default function UpcomingEvents({ data }) {
 
   // Show 3 cards at a time (or fewer on smaller screens)
   const visibleEvents = [
-    events[currentSlide % totalSlides],
-    events[(currentSlide + 1) % totalSlides],
-    events[(currentSlide + 2) % totalSlides]
+    data[currentSlide % totalSlides],
+    data[(currentSlide + 1) % totalSlides],
+    data[(currentSlide + 2) % totalSlides]
   ];
 
   return (
@@ -120,8 +120,8 @@ export default function UpcomingEvents({ data }) {
             >
                 <div className="aspect-[3/4] relative">
                 <img
-                    src={event.image}
-                    alt={event.title}
+                    src={event.thumbnail}
+                    alt={event.name}
                     className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -136,7 +136,7 @@ export default function UpcomingEvents({ data }) {
                     </div>
 
                     <h3 className="text-xl font-semibold mb-4">
-                    {event.title}
+                    {event.name}
                     </h3>
 
                     <button className="bg-transparent uppercase border border-white px-6 py-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-white hover:text-purple-900">

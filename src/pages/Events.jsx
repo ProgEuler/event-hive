@@ -1,36 +1,36 @@
 import React from 'react';
-import { Calendar, Clock, MapPin, Music, Users, Share2, Heart, Blocks } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Share2, Heart, Blocks } from 'lucide-react';
+import { useLoaderData, useParams } from 'react-router';
 
 export default function EventDetailsPage() {
-  // Mock data for the event
-  const event = {
-    id: 1,
-    title: "TRAFFIC: Electronic Music Festival",
-    subtitle: "The world's largest wildlife trade monitoring network",
-    date: "29 September 2025",
-    time: "21:00 - 05:00",
-    location: "Club Nightlife, 123 Party Street, Downtown",
-    description: "Join us for an unforgettable night of electronic music featuring world-renowned DJs and stunning visual performances. TRAFFIC brings together the best talent in the industry for a night of pure musical bliss.",
-    ticketPrice: "$45.00",
-    ticketsRemaining: 142,
-    totalCapacity: 500,
-    genre: "Electronic, House, Techno",
-    organizer: "Event Hive Productions",
-    featuredArtists: [
-      { name: "DJ Pulse", role: "Headliner" },
-      { name: "Electra Beats", role: "Support" },
-      { name: "Neon Collective", role: "Opening Act" }
-    ]
-  };
+    const events = useLoaderData()
+    const {id} = useParams()
+    const event = events.find((event) => event.id === parseInt(id))
+    const {
+        thumbnail,
+        name,
+        category,
+        date,
+        location,
+        entryFee,
+        description,
+        organizer,
+    } = event
+    console.log( event)
 
+    window.scroll({
+        top: 0,
+        behavior: "smooth"
+     })
   return (
+
     <div className="min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 text-white">
       {/* Header/Hero Section */}
       <div className="relative h-96">
         <img
-          src="https://static.vecteezy.com/system/resources/previews/029/337/642/non_2x/ai-generative-concert-stage-scenery-with-spotlights-colored-lights-smoke-free-photo.jpg"
+          src={thumbnail}
           alt={event.title}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full  h-full object-cover opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent"></div>
 
@@ -38,13 +38,13 @@ export default function EventDetailsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-3 mb-4">
               <span className="px-3 py-1 bg-purple-600 rounded-full text-xs font-semibold">
-                {event.genre.split(',')[0]}
+                {category.split(',')[0]}
               </span>
-              <span className="text-sm text-gray-300">{event.date}</span>
+              <span className="text-sm text-gray-300">{date}</span>
             </div>
 
-            <h1 className="text-4xl lg:text-5xl font-bold mb-2">{event.title}</h1>
-            <p className="text-xl text-gray-300">{event.subtitle}</p>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-2">{name}</h1>
+            {/* <p className="text-xl text-gray-300">{event.subtitle}</p> */}
           </div>
         </div>
       </div>
@@ -62,33 +62,33 @@ export default function EventDetailsPage() {
                 <InfoItem
                   icon={<Calendar className="w-5 h-5 text-purple-400" />}
                   title="Date"
-                  content={event.date}
+                  content={date}
                 />
-                <InfoItem
+                {/* <InfoItem
                   icon={<Clock className="w-5 h-5 text-purple-400" />}
                   title="Time"
-                  content={event.time}
-                />
+                  content={time}
+                /> */}
                 <InfoItem
                   icon={<MapPin className="w-5 h-5 text-purple-400" />}
                   title="Location"
-                  content={event.location}
+                  content={location}
                 />
                 <InfoItem
                   icon={<Blocks className='w-5 h-5 text-purple-400'/>}
                   title="Category"
-                  content={event.genre}
+                  content={category}
                 />
                 <InfoItem
                   icon={<Users className="w-5 h-5 text-purple-400" />}
                   title="Organizer"
-                  content={event.organizer}
+                  content={organizer}
                 />
               </div>
 
               <h3 className="text-xl font-semibold mb-4">About This Event</h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                {event.description}
+                {description}
                 <br /><br />
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis euismod, commodo nisi at, viverra libero. Aenean fringilla justo at mi tempor, id scelerisque ipsum eleifend. Praesent sed neque sed nulla tempor commodo.
                 <br /><br />
@@ -105,7 +105,7 @@ export default function EventDetailsPage() {
               </div>
               <p className="text-gray-300">
                 <MapPin className="inline w-4 h-4 mr-2" />
-                {event.location}
+                {location}
               </p>
             </div>
 
@@ -129,20 +129,20 @@ export default function EventDetailsPage() {
 
               <div className="flex justify-between items-center mb-6">
                 <span>Price per ticket</span>
-                <span className="text-2xl font-bold">{event.ticketPrice}</span>
+                <span className="text-2xl font-bold">{entryFee}</span>
               </div>
 
               <div className="w-full bg-white/10 rounded-full h-2 mb-2">
-                <div
+                {/* <div
                   className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
                   style={{ width: `${(event.ticketsRemaining / event.totalCapacity) * 100}%` }}
-                ></div>
+                ></div> */}
               </div>
 
-              <div className="flex justify-between text-sm text-gray-300 mb-8">
+              {/* <div className="flex justify-between text-sm text-gray-300 mb-8">
                 <span>{event.ticketsRemaining} tickets left</span>
                 <span>{event.totalCapacity} capacity</span>
-              </div>
+              </div> */}
 
               <div className="mb-6">
                 <label className="block text-sm mb-2">Number of tickets</label>

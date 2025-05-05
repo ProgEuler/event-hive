@@ -4,7 +4,7 @@ import { NavLink } from 'react-router'
 export default function Navbar() {
   return (
 
-    <div className="navbar bg-base-100 shadow-sm bg-gradient-to-r from-blue-900 to-purple-900 px-8 lg:px-16 text-white">
+    <div className="navbar absolute top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md text-white/80 px-16">
         <div className="navbar-start">
             <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -12,7 +12,7 @@ export default function Navbar() {
             </div>
             <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-gradient-to-r from-blue-900 to-purple-900 rounded-box z-1 mt-3 w-24 p-2 shadow">
+                className="menu menu-sm dropdown-content bg-gradient-to-r from-blue-900 to-purple-900 rounded-box z-1 mt-3 w-23 p-2 shadow">
 
 
                     <li><NavLink to="/">Home</NavLink></li>
@@ -29,7 +29,7 @@ export default function Navbar() {
 
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/about">About</NavLink></li>
-                <li><NavLink to="/events">Events</NavLink></li>
+                <li><NavLink to="/EventsBookings">Events</NavLink></li>
                 <li><NavLink to="/contact">Contact</NavLink></li>
 
             </ul>
