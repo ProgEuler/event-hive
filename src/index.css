@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake;
+}
+.active{
+    border-bottom: 1px solid white;
+    border-radius: 0;
+}
+p{
+    color: #e7e7e7;
+}

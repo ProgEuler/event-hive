@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "thumbnail": "/images/techfest.jpg",
+      "name": "TechFest 2025",
+      "category": "Tech",
+      "date": "2025-06-15",
+      "location": "Dhaka Convention Center",
+      "entryFee": "Free",
+      "buttonText": "View More"
+    },
+    {
+      "id": 2,
+      "thumbnail": "/images/art_expo.jpg",
+      "name": "Modern Art Expo",
+      "category": "Art",
+      "date": "2025-07-02",
+      "location": "Chittagong Art Gallery",
+      "entryFee": "৳200",
+      "buttonText": "View More"
+    },
+    {
+      "id": 3,
+      "thumbnail": "/images/music_night.jpg",
+      "name": "Live Music Night",
+      "category": "Music",
+      "date": "2025-06-20",
+      "location": "Sylhet Arena",
+      "entryFee": "৳500",
+      "buttonText": "View More"
+    },
+    {
+      "id": 4,
+      "thumbnail": "/images/startup_meet.jpg",
+      "name": "Startup Networking Meetup",
+      "category": "Business",
+      "date": "2025-06-10",
+      "location": "Innovation Hub, Rajshahi",
+      "entryFee": "Free (Registration Required)",
+      "buttonText": "View More"
+    },
+    {
+      "id": 5,
+      "thumbnail": "/images/workshop_ai.jpg",
+      "name": "AI & ML Workshop",
+      "category": "Education",
+      "date": "2025-06-25",
+      "location": "BRAC University, Dhaka",
+      "entryFee": "৳300",
+      "buttonText": "View More"
+    },
+    {
+      "id": 6,
+      "thumbnail": "/images/food_fest.jpg",
+      "name": "Street Food Carnival",
+      "category": "Food",
+      "date": "2025-06-18",
+      "location": "Gulshan Park, Dhaka",
+      "entryFee": "৳100",
+      "buttonText": "View More"
+    }
+  ]
