@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, Clock, MapPin, Users, Share2, Heart, Blocks } from 'lucide-react';
 import { useLoaderData, useParams } from 'react-router';
+import { useToast } from '../components/ui/ToastProvider';
 
-export default function EventDetailsPage() {
+export default function EventDetails() {
     const events = useLoaderData()
     const {id} = useParams()
+    const { showToast } = useToast()
+    const [username, setUserName] = useState('')
+    const [email, setEmail] = useState('')
+
+    const isFormValid = username && email
     const event = events.find((event) => event.id === parseInt(id))
     const {
         thumbnail,
@@ -18,10 +24,14 @@ export default function EventDetailsPage() {
     } = event
     console.log( event)
 
-    window.scroll({
-        top: 0,
-        behavior: "smooth"
-     })
+    useEffect(() => {
+        window.scroll({
+            top: 0,
+            behavior: "smooth"
+         })
+    },[event])
+
+
   return (
 
     <div className="min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 text-white">
@@ -44,7 +54,7 @@ export default function EventDetailsPage() {
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-bold mb-2">{name}</h1>
-            {/* <p className="text-xl text-gray-300">{event.subtitle}</p> */}
+            <p className="text-lg text-gray-300 mb-4">{location}</p>
           </div>
         </div>
       </div>
@@ -64,11 +74,7 @@ export default function EventDetailsPage() {
                   title="Date"
                   content={date}
                 />
-                {/* <InfoItem
-                  icon={<Clock className="w-5 h-5 text-purple-400" />}
-                  title="Time"
-                  content={time}
-                /> */}
+
                 <InfoItem
                   icon={<MapPin className="w-5 h-5 text-purple-400" />}
                   title="Location"
@@ -89,10 +95,6 @@ export default function EventDetailsPage() {
               <h3 className="text-xl font-semibold mb-4">About This Event</h3>
               <p className="text-gray-300 mb-8 leading-relaxed">
                 {description}
-                <br /><br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in felis euismod, commodo nisi at, viverra libero. Aenean fringilla justo at mi tempor, id scelerisque ipsum eleifend. Praesent sed neque sed nulla tempor commodo.
-                <br /><br />
-                Quisque nec turpis at urna dictum luctus. Suspendisse convallis dignissim eros at volutpat. In egestas mattis dui. Aliquam mattis dictum aliquet. Nulla sapien mauris, eleifend et sem ac, commodo dapibus odio.
               </p>
 
               <h3 className="text-xl font-semibold mb-4">Location</h3>
@@ -125,7 +127,7 @@ export default function EventDetailsPage() {
           {/* Right Column - Ticket Info */}
           <div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 sticky top-8">
-              <h2 className="text-2xl font-semibold mb-6">Get Tickets</h2>
+              <h2 className="text-2xl font-semibold mb-6">Reserve Your Seat</h2>
 
               <div className="flex justify-between items-center mb-6">
                 <span>Price per ticket</span>
@@ -133,39 +135,43 @@ export default function EventDetailsPage() {
               </div>
 
               <div className="w-full bg-white/10 rounded-full h-2 mb-2">
-                {/* <div
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
-                  style={{ width: `${(event.ticketsRemaining / event.totalCapacity) * 100}%` }}
-                ></div> */}
               </div>
 
-              {/* <div className="flex justify-between text-sm text-gray-300 mb-8">
-                <span>{event.ticketsRemaining} tickets left</span>
-                <span>{event.totalCapacity} capacity</span>
-              </div> */}
+              <form className="mb-6">
+                <label className="block text-sm mb-2">Name & Email</label>
+                <div className="flex flex-col items-center gap-2">
 
-              <div className="mb-6">
-                <label className="block text-sm mb-2">Number of tickets</label>
-                <div className="flex items-center border border-white/20 rounded-lg overflow-hidden">
-                  <button className="px-4 py-2 bg-white/10 hover:bg-white/20 transition-colors">-</button>
                   <input
-                    type="number"
-                    min="1"
-                    max="10"
-                    value="1"
-                    className="w-full bg-transparent border-none text-center focus:outline-none py-2"
-                    readOnly
+                    onChange={(e) => setUserName(e.target.value)}
+                    required
+                    type="text"
+                    placeholder='Name'
+                    className="w-full bg-transparent border border-white/20 rounded-lg overflow-hidden text-center focus:outline-none py-2"
                   />
-                  <button className="px-4 py-2 bg-white/10 hover:bg-white/20 transition-colors">+</button>
-                </div>
-              </div>
+                  <input
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    type="email"
+                    placeholder='Email'
+                    className="w-full bg-transparent border border-white/20 rounded-lg overflow-hidden text-center focus:outline-none py-2"
+                  />
 
-              <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-500 hover:to-purple-500 transition-colors mb-4">
-                Buy Tickets
-              </button>
+                </div>
+
+              <input
+                type="submit"
+                onClick={(e) => {
+                    e.preventDefault()
+                    showToast('Seat reserved successfully!', 'success')}
+                }
+                disabled={!isFormValid}
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-500 hover:to-purple-500 transition-colors my-4"
+                Reserve Now
+               />
+              </form>
+
 
               <div className="text-center text-sm text-gray-300">
-                <p className="mb-2">Secure payment processing</p>
                 <p>Tickets will be sent to your email</p>
               </div>
             </div>
