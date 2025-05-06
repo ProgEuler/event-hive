@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Profiler } from 'react'
 import { createBrowserRouter } from 'react-router'
 import Home from '../pages/Home'
 import About from '../pages/About'
@@ -9,6 +9,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import EventsBook from '../pages/EventsBook'
 import EventDetails from '../pages/EventDetails'
+import Profile from '../pages/Profile'
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />,
+            },
+            {
+                path: '/profile',
+                element: <Profile />,
             }
         ],
 

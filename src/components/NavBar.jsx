@@ -1,18 +1,29 @@
 import React, { use } from 'react'
 import { NavLink } from 'react-router'
-import { LogIn } from 'lucide-react'
+import { LogIn, LogOut } from 'lucide-react'
 import { AuthContext } from '../provider/AuthProvider'
 
 export default function Navbar() {
-    const { user } = use(AuthContext)
+    const { user, logOut } = use(AuthContext)
+
+    const handleLogout = () =>{
+        console.log("logging out")
+        logOut()
+            .then(() => {
+                console.log("logged out")
+            })
+            .catch((error) => {
+                console.error("Error logging out:", error)
+            })
+    }
 
   return (
 
-    <div className="navbar absolute top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md text-white/80 px-16">
+    <div className="navbar absolute top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md text-white/80 px-4 lg:px-16">
         <div className="navbar-start">
             <div>{user && user.email}</div>
             <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="pl-2 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
             </div>
             <ul
@@ -43,10 +54,30 @@ export default function Navbar() {
 
             </ul>
         </div>
-        <div className="navbar-end gap-4">
+        <div className="navbar-end gap-2 lg:gap-4">
+            {
+                user ?
+                (<>
+                    <NavLink to="/profile"
+                        className="flex items-center gap-1 rounded-lg">
+                        <img src={user.photoURL} alt="User"
+                        className="w-8 h-8 rounded-full" />
+                        <span className="hidden lg:block">{user.name}</span>
+                    </NavLink>
+                    <button
+                        onClick={handleLogout}
+                        className="hover:bg-white/10 transition-colors flex items-center gap-1 px-4 py-2 rounded-lg font-semibold">
+                        <LogOut className="w-5 h-5" /> Logout
+                    </button>
+                </>)
 
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
+                : ( <>
+                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/register">Register</NavLink>
+                    </>
+                )
+            }
+
         </div>
     </div>
   )

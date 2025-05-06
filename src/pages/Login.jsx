@@ -1,29 +1,87 @@
-import { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { use, useEffect, useState } from 'react';
+import { Mail, Lock, Eye, EyeOff, CircleX } from 'lucide-react';
+import { NavLink } from 'react-router';
+import { AuthContext } from '../provider/AuthProvider';
 
 export default function Login() {
+    const { logIn } = use(AuthContext)
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
 
+  const [formValues, setFormValues] = useState({
+    email: '',
+    password: '',
+  });
+  const [formErrors, setFormErrors] = useState({})
+  const [isSubmit, setIsSubmit] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  }
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setFormErrors(validate(formValues))
+      setIsSubmit(true)
+      console.log('Login attempt with:', {formValues});
+      // Add your registration logic here
+      logIn(formValues.email, formValues.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log('User Logged in', user);
+        // You can also update the user's profile with the name and photo URL here
+        // user.updateProfile({
+        //   displayName: formValues.name,
+        //   photoURL: formValues.photoUrl,
+        // });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('Error logging in user:', errorCode, errorMessage);
+      });
+    }
+    useEffect( () => {
+      console.log(formErrors)
+      if (Object.keys(formErrors).length === 0 && isSubmit) {
+        console.log('Login successful:', formValues);
+        // Perform registration logic here, e.g., API call
+      }
+    }, [])
+
+    const validate = (values) => {
+      const errors = {}
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!values.email) {
+        errors.email = "Email is required"
+      } else if (!regex.test(values.email)) {
+        errors.email = "Invalid email format"
+      }
+      if (!values.password) {
+        errors.password = "Password is required"
+      } else if (values.password.length < 6) {
+        errors.password = "Password must be at least 6 characters"
+      }
+
+      return errors
+    }
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login attempt with:', { email, password });
-    // Add your authentication logic here
   };
 
   return (
     <div className="lg:py-24 bg-gradient-to-r from-blue-900 to-purple-900 flex flex-col items-center justify-center p-4">
 
       {/* Login Card */}
-      <div className="bg-indigo-900/80 backdrop-blur-sm rounded-xl p-6 w-full max-w-md border border-purple-500/30 shadow-lg">
+      <div className="bg-indigo-900/80 backdrop-blur-sm rounded-xl p-6 w-full max-w-md border border-purple-500/30 shadow-lg mt-24 lg:mt-16">
         <h2 className="text-2xl font-bold text-white mb-6 text-center">Login to Your Account</h2>
 
-        <div className="space-y-6">
+        <form
+            onSubmit={handleSubmit}
+            className="space-y-6">
           {/* Email Field */}
           <div className="space-y-2">
             <label htmlFor="email" className="block text-purple-200 font-medium">
@@ -37,12 +95,15 @@ export default function Login() {
                 id="email"
                 name="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
                 className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3"
                 placeholder="your@email.com"
               />
             </div>
+              <p className='flex gap-1 items-center'>
+                    {formErrors.email && <CircleX size={18}/>}
+                    {formErrors.email}
+              </p>
           </div>
 
           {/* Password Field */}
@@ -58,8 +119,7 @@ export default function Login() {
                 id="password"
                 name="password"
                 type={passwordVisible ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3 pr-10"
                 placeholder="••••••••"
               />
@@ -77,6 +137,10 @@ export default function Login() {
                 </button>
               </div>
             </div>
+                <p className='flex gap-1 items-center'>
+                    {formErrors.password && <CircleX size={18}/>}
+                    {formErrors.password}
+                </p>
           </div>
 
           {/* Remember Me & Forgot Password */}
@@ -100,21 +164,25 @@ export default function Login() {
           {/* Login Button */}
           <div>
             <button
-              onClick={handleSubmit}
+              type='submit'
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
             >
               Sign In
             </button>
           </div>
-        </div>
+        </form>
 
         {/* Sign Up Link */}
         <div className="mt-6 text-center">
           <p className="text-sm text-purple-200">
             Don't have an account?{' '}
-            <span className="font-medium text-purple-300 hover:text-white cursor-pointer">
+
+            <NavLink
+                to="/register"
+                className="font-medium text-purple-300 hover:text-white cursor-pointer"
+            >
               Sign up now
-            </span>
+            </NavLink>
           </p>
         </div>
       </div>
