@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { User, Mail, Lock, Eye, EyeOff, Music } from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Music, Link } from 'lucide-react';
 
 export default function Register() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [name, setName] = useState('');
+  const [photoUrl, setPhotoUrl] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [musicPreference, setMusicPreference] = useState('');
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -20,7 +20,28 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Register attempt with:', { name, email, password, musicPreference });
+
+    if (!name.trim()) {
+        alert('Name is required');
+        return;
+      }
+      if (!photoUrl.trim()) {
+        alert('Photo URL is required');
+        return;
+      }
+      if (!email.trim()) {
+        alert('Email is required');
+        return;
+      }
+      if (!password.trim()) {
+        alert('Password is required');
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+    console.log('Register attempt with:', { name, photoUrl, email, password});
     // Add your registration logic here
   };
 
@@ -28,7 +49,7 @@ export default function Register() {
     <div className="min-h-screen bg-gradient-to-r from-blue-900 to-purple-900 flex flex-col items-center justify-center p-4">
 
       {/* Register Card */}
-      <div className="bg-indigo-900/80 backdrop-blur-sm rounded-xl p-6 w-full max-w-md border border-purple-500/30 shadow-lg">
+      <div className="bg-indigo-900/80 backdrop-blur-sm rounded-xl p-6 w-full max-w-md border border-purple-500/30 shadow-lg mt-16">
         <h2 className="text-2xl font-bold text-white mb-6 text-center">Create Your Account</h2>
 
         <div className="space-y-5">
@@ -49,6 +70,27 @@ export default function Register() {
                 onChange={(e) => setName(e.target.value)}
                 className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3"
                 placeholder="Your name"
+              />
+            </div>
+          </div>
+
+            {/* Photo Field */}
+          <div className="space-y-2">
+            <label htmlFor="name" className="block text-purple-200 font-medium">
+              Photo
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Link className="h-5 w-5 text-purple-400" />
+              </div>
+              <input
+                id="url"
+                name="url"
+                type="text"
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+                className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3"
+                placeholder="URL"
               />
             </div>
           </div>
@@ -91,6 +133,7 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3 pr-10"
                 placeholder="••••••••"
+                required
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                 <button
@@ -149,6 +192,7 @@ export default function Register() {
               name="terms"
               type="checkbox"
               className="h-4 w-4 bg-indigo-800 border-purple-500 rounded focus:ring-purple-500"
+              required
             />
             <label htmlFor="terms" className="ml-2 block text-sm text-purple-200">
               I agree to the{' '}
