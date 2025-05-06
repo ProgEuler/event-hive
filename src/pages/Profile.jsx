@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { User, Save } from 'lucide-react';
+import { AuthContext } from '../provider/AuthProvider';
 
 export default function Profile() {
+    const { user } = use(AuthContext)
   // Initialize state with placeholder user data
   const [userData, setUserData] = useState({
     name: "John Doe",
@@ -67,7 +69,7 @@ export default function Profile() {
             <div className="flex flex-col items-center space-y-4">
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-purple-500">
                 <img
-                  src={userData.photoURL || "/api/placeholder/150/150"}
+                  src={user.photoURL}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
@@ -97,7 +99,7 @@ export default function Profile() {
                     <label className="block text-sm font-medium mb-2">Email</label>
                     <input
                       type="email"
-                      value={userData.email}
+                      value={user.email}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white cursor-not-allowed opacity-70"
                       disabled
                     />
@@ -127,17 +129,17 @@ export default function Profile() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Name</h3>
-                    <p className="text-xl font-semibold">{userData.name}</p>
+                    <p className="text-xl font-semibold">{user.name}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Email</h3>
-                    <p className="text-xl font-semibold">{userData.email}</p>
+                    <p className="text-xl font-semibold">{user.email}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Photo URL</h3>
-                    <p className="text-xl font-semibold break-all">{userData.photoURL}</p>
+                    <p className="text-xl font-semibold break-all">{user.photoURL}</p>
                   </div>
                 </div>
               )}

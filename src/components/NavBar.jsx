@@ -16,12 +16,12 @@ export default function Navbar() {
                 console.error("Error logging out:", error)
             })
     }
-
+    console.log(user)
   return (
 
     <div className="navbar absolute top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md text-white/80 px-4 lg:px-16">
         <div className="navbar-start">
-            <div>{user && user.email}</div>
+            {/* <div>{user && user.displayName}</div> */}
             <div className="dropdown">
             <div tabIndex={0} role="button" className="pl-2 lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>

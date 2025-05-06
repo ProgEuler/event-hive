@@ -5,7 +5,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 export default function Register() {
 
-    const { createUser, setUser } = use(AuthContext)
+    const { createUser, setUser, updateUser } = use(AuthContext)
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -36,7 +36,25 @@ export default function Register() {
       // Signed in
       const user = userCredential.user;
       console.log('User registered:', user);
-      setUser(user)
+      updateUser(
+            {
+                displayName: formValues.name,
+                photoURL: formValues.photoUrl
+            }
+        ).then( () => {
+            setUser(
+                {
+                    ...user,
+                    displayName: formValues.name,
+                    photoURL: formValues.photoUrl
+                }
+            )
+            console.log("User updated", user)
+        }).catch((err) => {
+            console.log(err.message)
+            setUser(user)
+        })
+
       // You can also update the user's profile with the name and photo URL here
       // user.updateProfile({
       //   displayName: formValues.name,
@@ -138,8 +156,9 @@ export default function Register() {
               </div>
               <input
                 id="url"
-                name="url"
+                name="photoUrl"
                 type="text"
+                onChange={handleChange}
                 className="bg-indigo-800/50 border border-purple-500/50 text-white placeholder-purple-300 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-10 p-3"
                 placeholder="URL"
               />
