@@ -1,9 +1,12 @@
 import { use, useEffect, useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, CircleX } from 'lucide-react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthProvider';
 
 export default function Login() {
+    const location = useLocation()
+    const navigate = useNavigate()
+    // console.log(location)
     const { logIn } = use(AuthContext)
   const [passwordVisible, setPasswordVisible] = useState(false);
 //   const [email, setEmail] = useState('');
@@ -29,8 +32,9 @@ export default function Login() {
       logIn(formValues.email, formValues.password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
-        console.log('User Logged in', user);
+        navigate(location.state || '/')
+        // const user = userCredential.user;
+        // // console.log('User Logged in', user);
         // You can also update the user's profile with the name and photo URL here
         // user.updateProfile({
         //   displayName: formValues.name,
@@ -40,6 +44,8 @@ export default function Login() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setFormErrors({ ...formErrors, password: errorMessage })
+
         console.error('Error logging in user:', errorCode, errorMessage);
       });
     }

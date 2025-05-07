@@ -1,10 +1,12 @@
 import React, { use } from 'react'
-import { NavLink } from 'react-router'
+import { NavLink, useNavigate } from 'react-router'
 import { LogIn, LogOut } from 'lucide-react'
 import { AuthContext } from '../provider/AuthProvider'
 
 export default function Navbar() {
     const { user, logOut } = use(AuthContext)
+
+    const navigate = useNavigate()
 
     const handleLogout = () =>{
         console.log("logging out")
@@ -54,16 +56,17 @@ export default function Navbar() {
 
             </ul>
         </div>
-        <div className="navbar-end gap-2 lg:gap-4">
+        <div className="navbar-end lg:gap-1">
             {
                 user ?
                 (<>
-                    <NavLink to="/profile"
+                    <button
+                        onClick={() => navigate('/profile')}
                         className="flex items-center gap-1 rounded-lg">
                         <img src={user.photoURL} alt="User"
-                        className="w-8 h-8 rounded-full" />
-                        <span className="hidden lg:block">{user.name}</span>
-                    </NavLink>
+                        className="size-9 rounded-full overflow-hidden border-3 border-purple-500" />
+                        <span className="hidden lg:block">{user.displayName}</span>
+                    </button>
                     <button
                         onClick={handleLogout}
                         className="hover:bg-white/10 transition-colors flex items-center gap-1 px-4 py-2 rounded-lg font-semibold">

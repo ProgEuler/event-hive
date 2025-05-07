@@ -158,16 +158,17 @@ export default function EventDetails() {
 
                 </div>
 
-              <input
+              <button
                 type="submit"
                 onClick={(e) => {
                     e.preventDefault()
                     showToast('Seat reserved successfully!', 'success')}
                 }
                 disabled={!isFormValid}
-                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-500 hover:to-purple-500 transition-colors my-4"
+                className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg font-semibold hover:from-blue-500 hover:to-purple-500 transition-colors my-4">
+
                 Reserve Now
-               />
+                </button>
               </form>
 
 

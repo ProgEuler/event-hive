@@ -17,12 +17,17 @@ export default function AuthProvider({ children }) {
         name: null,
         email: null,
     })
-    console.log(user)
+
+    const [loading, setLoading] = useState(true)
+    // console.log(user)
+
     const createUser = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const logIn = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
     const logOut = () => {
@@ -34,6 +39,7 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+            setLoading(false)
         })
         return () => {
             unsubscribe()
@@ -45,11 +51,12 @@ export default function AuthProvider({ children }) {
         createUser,
         logOut,
         logIn,
-        updateUser
+        updateUser,
+        loading,
+        setLoading,
     }
   return (
     <AuthContext value={AuthData}>
-      {/* Your components that need access to the auth context go here */}
       {children}
     </AuthContext>
   )

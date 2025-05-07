@@ -64,6 +64,7 @@ export default function Register() {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+    //    setFormErrors(errorMessage)
       console.error('Error registering user:', errorCode, errorMessage);
     });
   };

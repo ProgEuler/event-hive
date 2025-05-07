@@ -89,7 +89,7 @@ export default function Profile() {
                     <input
                       type="text"
                       name="name"
-                      value={formValues.name}
+                      value={user.displayName}
                       onChange={handleInputChange}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
@@ -111,7 +111,7 @@ export default function Profile() {
                     <input
                       type="text"
                       name="photoURL"
-                      value={formValues.photoURL}
+                      value={user.photoURL}
                       onChange={handleInputChange}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
@@ -129,17 +129,12 @@ export default function Profile() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Name</h3>
-                    <p className="text-xl font-semibold">{user.name}</p>
+                    <p className="text-xl font-semibold">{user.displayName}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Email</h3>
                     <p className="text-xl font-semibold">{user.email}</p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-medium text-purple-300">Photo URL</h3>
-                    <p className="text-xl font-semibold break-all">{user.photoURL}</p>
                   </div>
                 </div>
               )}
