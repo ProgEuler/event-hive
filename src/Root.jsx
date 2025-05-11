@@ -4,10 +4,12 @@ import './index.css'
 import Navbar from './components/NavBar'
 import Footer from './components/Footer'
 import { ToastProvider } from './components/ui/ToastProvider'
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Root() {
   return (
     <div>
+        <Analytics />
         <Navbar />
         <ToastProvider>
             <Outlet />
