@@ -21,7 +21,7 @@ export default function Contact() {
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
+    // console.log('Form submitted:', formData);
 
     setSubmitted(true);
 

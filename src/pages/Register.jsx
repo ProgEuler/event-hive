@@ -40,8 +40,8 @@ export default function Register() {
     setFormErrors(errors)
     setIsSubmit(true)
 
-    console.log('Register attempt with:', {formValues});
-    console.log("errors: ", errors)
+    // console.log('Register attempt with:', {formValues});
+    // console.log("errors: ", errors)
 
     if(Object.keys(errors).length === 0){
         setLoading(true)
@@ -49,7 +49,7 @@ export default function Register() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log('User registered:', user);
+        //   console.log('User registered:', user);
           showToast('Registration successful!', 'success')
           navigator('/')
           // You can also update the user's profile with the name and photo URL here

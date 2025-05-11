@@ -8,7 +8,7 @@ import { Music, Heart, Star } from 'lucide-react';
 export default function Home() {
     document.title = 'Event Hive'
     const data = useLoaderData()
-    console.log(data.length)
+    // console.log(data.length)
   return (
     <div className="bg-gradient-to-r from-blue-900 to-purple-900 min-h-screen flex flex-col items-center justify-center p-4 pt-16">
         <UpcomingEvents data={data} />

@@ -24,7 +24,7 @@ export default function EventDetails() {
         description,
         organizer,
     } = event
-    console.log( event)
+    // console.log( event)
 
     useEffect(() => {
         window.scroll({

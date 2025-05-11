@@ -33,7 +33,7 @@ export default function Login() {
   const handleSubmit = (e) => {
       e.preventDefault();
       setFormErrors(validate(formValues))
-      console.log('Login attempt with:', {formValues});
+    //   console.log('Login attempt with:', {formValues});
       // Add your registration logic here
       setLoading(true)
       logIn(formValues.email, formValues.password)
@@ -42,7 +42,7 @@ export default function Login() {
             // Signed in
             navigate(location.state || '/')
             // const user = userCredential.user;
-            // // console.log('User Logged in', user);
+            // console.log('User Logged in', user);
             // You can also update the user's profile with the name and photo URL here
             // user.updateProfile({
             //   displayName: formValues.name,
@@ -84,7 +84,7 @@ export default function Login() {
 
   const passReset = () => {
     const email = (emailRef.current.value)
-    console.log(email)
+    // console.log(email)
     resetPassword(email)
         .then(() => {
             showToast("A reset email sent to your account.")

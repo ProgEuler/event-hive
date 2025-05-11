@@ -13,10 +13,10 @@ export default function Navbar() {
         navigate('/login')
         logOut()
             .then(() => {
-                console.log("logged out")
+                // console.log("logged out")
             })
             .catch((error) => {
-                console.error("Error logging out:", error)
+                // console.error("Error logging out:", error)
             })
     }
     // console.log(user)

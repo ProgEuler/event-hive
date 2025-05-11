@@ -44,7 +44,7 @@ const handleSubmit = () => {
     photoURL: formValues.photoURL,
   })
     .then(() => {
-      console.log('User updated successfully');
+    //   console.log('User updated successfully');
       setUserData({
         name: formValues.name,
         photoURL: formValues.photoURL,

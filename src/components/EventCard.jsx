@@ -69,7 +69,7 @@ import { useNavigate } from 'react-router';
 // Main component
 export default function EventCard({ data }) {
 //   const [selectedEvent, setSelectedEvent] = useState(null);
-    console.log(data)
+    // console.log(data)
     const navigator = useNavigate()
 
   return (
