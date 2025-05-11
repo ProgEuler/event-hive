@@ -71,9 +71,10 @@ export default function Navbar() {
                                 <button
                                     onClick={() => navigate('/profile')}
                                     className="flex items-center gap-1 rounded-lg">
+                                                <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
                                                 <img src={user.photoURL} alt="User"
                                                 className="size-9 rounded-full overflow-hidden border-3 border-purple-500" />
-                                                <span className="hidden lg:block">{user.displayName}</span>
+                                                </div>
                                 </button>
                  }
                     <button

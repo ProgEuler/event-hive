@@ -14,8 +14,9 @@ export default function PrivateRoute({ children }) {
                     <div className='text-white'>Loading...</div>
                 </div>
     }
-    if(user && user.email){
-        return children
+    if(!user) {
+        return <Navigate state={location.pathname} to='/login' />
     }
-    return <Navigate state={location.pathname} to='/login' />
+
+    return children
 }

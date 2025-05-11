@@ -43,7 +43,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/EventsBookings',
-                element: <EventsBook />,
+                element: <PrivateRoute>
+                            <EventsBook />
+                        </PrivateRoute>,
                 loader: () => fetch('/upcomingEvents.json'),
                 hydrateFallbackElement: <div className='flex justify-center items-center h-screen'>
                     <svg className="animate-spin h-10 w-10 text-blue-500" viewBox="3 3 18 18">
@@ -67,18 +69,18 @@ export const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <PrivateRoute>
-                            <Profile />,
-                        </PrivateRoute>
+                            <Profile />
+                        </PrivateRoute>,
             }
         ],
 
     },
-    // {
-    //     path: '*',
-    //     element: <div>
-    //         <h1 className='text-4xl text-center text-red-500'>404 Not Found</h1>
-    //         <span className='text-center'>The page you are looking for does not exist.</span>
-    //         <span className='text-center'>Please check the URL or go back to the homepage.</span>
-    //     </div>
-    // }
+    {
+        path: '*',
+        element: <div className='min-h-screen flex justify-center items-center flex-col gap-4'>
+            <h1 className='text-4xl text-center text-red-500'>404 Not Found</h1>
+            <span className='text-center'>The page you are looking for does not exist.</span>
+            <span className='text-center'>Please check the URL or go back to the homepage.</span>
+        </div>
+    }
 ])
