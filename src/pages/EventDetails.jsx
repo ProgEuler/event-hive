@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Calendar, Clock, MapPin, Users, Share2, Heart, Blocks } from 'lucide-react';
 import { useLoaderData, useParams } from 'react-router';
 import { useToast } from '../components/ui/ToastProvider';
+import DynamicTitle from '../components/ui/DynamicTitle';
 
 export default function EventDetails() {
+
     const events = useLoaderData()
     const {id} = useParams()
     const { showToast } = useToast()
@@ -35,6 +37,7 @@ export default function EventDetails() {
   return (
 
     <div className="min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 text-white">
+        <DynamicTitle event={event} />
       {/* Header/Hero Section */}
       <div className="relative h-96">
         <img

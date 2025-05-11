@@ -4,12 +4,13 @@ import { LogIn, LogOut } from 'lucide-react'
 import { AuthContext } from '../provider/AuthProvider'
 
 export default function Navbar() {
-    const { user, logOut } = use(AuthContext)
+    const { user, logOut, loading } = use(AuthContext)
 
     const navigate = useNavigate()
 
     const handleLogout = () =>{
-        console.log("logging out")
+        // console.log("logging out")
+        navigate('/login')
         logOut()
             .then(() => {
                 console.log("logged out")
@@ -18,7 +19,7 @@ export default function Navbar() {
                 console.error("Error logging out:", error)
             })
     }
-    console.log(user)
+    // console.log(user)
   return (
 
     <div className="navbar absolute top-0 left-0 w-full z-50 bg-transparent backdrop-blur-md text-white/80 px-4 lg:px-16">
@@ -41,6 +42,7 @@ export default function Navbar() {
             </ul>
             </div>
             <button
+                onClick={() => navigate('/')}
                 className="px-4 py-2 rounded-lg hover:bg-white/10 transition-colors font-semibold text-2xl"
             >
                 Event Hive
@@ -60,13 +62,20 @@ export default function Navbar() {
             {
                 user ?
                 (<>
-                    <button
-                        onClick={() => navigate('/profile')}
-                        className="flex items-center gap-1 rounded-lg">
-                        <img src={user.photoURL} alt="User"
-                        className="size-9 rounded-full overflow-hidden border-3 border-purple-500" />
-                        <span className="hidden lg:block">{user.displayName}</span>
-                    </button>
+                    {
+                        loading ?
+                                <div
+                                className="loading loading-spinner loading-xs">
+                                </div>
+                                :
+                                <button
+                                    onClick={() => navigate('/profile')}
+                                    className="flex items-center gap-1 rounded-lg">
+                                                <img src={user.photoURL} alt="User"
+                                                className="size-9 rounded-full overflow-hidden border-3 border-purple-500" />
+                                                <span className="hidden lg:block">{user.displayName}</span>
+                                </button>
+                 }
                     <button
                         onClick={handleLogout}
                         className="hover:bg-white/10 transition-colors flex items-center gap-1 px-4 py-2 rounded-lg font-semibold">
@@ -74,10 +83,10 @@ export default function Navbar() {
                     </button>
                 </>)
 
-                : ( <>
+                : ( <div className="flex gap-2">
                         <NavLink to="/login">Login</NavLink>
                         <NavLink to="/register">Register</NavLink>
-                    </>
+                    </div>
                 )
             }
 

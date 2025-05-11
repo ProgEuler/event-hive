@@ -6,6 +6,7 @@ import { Music, Heart, Star } from 'lucide-react';
 
 
 export default function Home() {
+    document.title = 'Event Hive'
     const data = useLoaderData()
     console.log(data.length)
   return (

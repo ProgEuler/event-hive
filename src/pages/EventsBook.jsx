@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function EventsBook() {
+    document.title = 'My Bookings | Event Hive';
     const [bookings, setBookings] = useState([]);
     const navigator = useNavigate();
 

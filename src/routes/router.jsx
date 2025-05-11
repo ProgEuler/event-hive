@@ -40,12 +40,6 @@ export const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: () => fetch('/upcomingEvents.json'),
-                // hydrateFallbackElement: <div className='flex justify-center items-center h-screen'>
-                //     <svg className="animate-spin h-10 w-10 text-blue-500" viewBox="3 3 18 18">
-                //         <circle className="opacity-25" cx="12" cy="12" r="9" strokeWidth="2" fill="none" />
-                //         <path className="opacity-75" fill="blue" d="M12 3v6h6a9 9 0 1 1-9-9z" />
-                //     </svg>
-                // </div>,
             },
             {
                 path: '/EventsBookings',
@@ -72,7 +66,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile />,
+                element: <PrivateRoute>
+                            <Profile />,
+                        </PrivateRoute>
             }
         ],
 

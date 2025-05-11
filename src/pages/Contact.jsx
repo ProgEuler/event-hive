@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, MessageSquare, User, Send, Clock, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
+    document.title = 'Contact Us | Event Hive';
   const [formData, setFormData] = useState({
     name: '',
     email: '',

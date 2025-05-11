@@ -3,12 +3,12 @@ import { User, Save } from 'lucide-react';
 import { AuthContext } from '../provider/AuthProvider';
 
 export default function Profile() {
-    const { user } = use(AuthContext)
-  // Initialize state with placeholder user data
+    document.title = 'Profile | MyApp';
+    const { user, updateUser } = use(AuthContext)
+// Initialize state with placeholder user data
   const [userData, setUserData] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    photoURL: "/api/placeholder/150/150"
+    name: user.displayName,
+    photoURL: user.photoURL,
   });
 
   // State to track if edit mode is active
@@ -38,15 +38,26 @@ export default function Profile() {
   };
 
   // Handle form submission
-  const handleSubmit = () => {
-    // Update user data with form values
-    setUserData({
-      ...userData,
-      name: formValues.name,
-      photoURL: formValues.photoURL
+const handleSubmit = () => {
+  updateUser({
+    displayName: formValues.name,
+    photoURL: formValues.photoURL,
+  })
+    .then(() => {
+      console.log('User updated successfully');
+      setUserData({
+        name: formValues.name,
+        photoURL: formValues.photoURL,
+      });
+      user.displayName = formValues.name
+      user.photoURL = formValues.photoURL
+
+      setIsEditing(false);
+    })
+    .catch((err) => {
+      console.error('Error updating user:', err);
     });
-    setIsEditing(false);
-  };
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 to-purple-700 text-white p-6">
@@ -89,7 +100,7 @@ export default function Profile() {
                     <input
                       type="text"
                       name="name"
-                      value={user.displayName}
+                      value={formValues.name}
                       onChange={handleInputChange}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
@@ -99,7 +110,7 @@ export default function Profile() {
                     <label className="block text-sm font-medium mb-2">Email</label>
                     <input
                       type="email"
-                      value={user.email}
+                      value={user?.email}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white cursor-not-allowed opacity-70"
                       disabled
                     />
@@ -111,7 +122,7 @@ export default function Profile() {
                     <input
                       type="text"
                       name="photoURL"
-                      value={user.photoURL}
+                      value={formValues.photoURL}
                       onChange={handleInputChange}
                       className="bg-indigo-800 bg-opacity-50 w-full p-3 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
@@ -129,12 +140,12 @@ export default function Profile() {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Name</h3>
-                    <p className="text-xl font-semibold">{user.displayName}</p>
+                    <p className="text-xl font-semibold">{user?.displayName}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-purple-300">Email</h3>
-                    <p className="text-xl font-semibold">{user.email}</p>
+                    <p className="text-xl font-semibold">{user?.email}</p>
                   </div>
                 </div>
               )}

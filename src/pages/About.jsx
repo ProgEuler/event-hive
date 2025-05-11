@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, Users, Award, Music } from 'lucide-react';
 
 export default function About() {
+    document.title = 'About Us | Event Hive';
   const stats = [
     { icon: <Calendar className="w-6 h-6" />, value: "120+", label: "Events Organized" },
     { icon: <Users className="w-6 h-6" />, value: "50,000+", label: "Happy Attendees" },
